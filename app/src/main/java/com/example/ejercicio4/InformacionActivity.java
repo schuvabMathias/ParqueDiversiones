@@ -1,47 +1,47 @@
 package com.example.ejercicio4;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class MainActivity extends AppCompatActivity {
+import androidx.appcompat.app.AppCompatActivity;
 
-    private Button btnCategories;
-    private Button btnInformacion;
+public class InformacionActivity extends AppCompatActivity {
+
+    private Button btnVolver;
+    private Button btnCategorias;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.informacion);
 
-        btnCategories = (Button) findViewById(R.id.buttonCategories);
-        btnInformacion = (Button) findViewById(R.id.btnInfo);
+        btnVolver = (Button) findViewById(R.id.volver);
+        btnCategorias = (Button) findViewById(R.id.btnCategorias);
 
-        btnCategories.setOnClickListener(new View.OnClickListener() {
+        btnVolver.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //Creamos el Intent
                 Intent intent =
-                        new Intent(MainActivity.this, MenuCategoriasActivity.class);
+                        new Intent(InformacionActivity.this, MainActivity.class);
                 //Iniciamos la nueva actividad
                 startActivity(intent);
             }
 
         });
 
-        btnInformacion.setOnClickListener(new View.OnClickListener() {
+        btnCategorias.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //Creamos el Intent
                 Intent intent =
-                        new Intent(MainActivity.this, InformacionActivity.class);
+                        new Intent(InformacionActivity.this, CategoriaActivity.class);
                 //Iniciamos la nueva actividad
                 startActivity(intent);
             }
 
         });
     }
-
 }
