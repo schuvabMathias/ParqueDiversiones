@@ -2,6 +2,7 @@ package com.example.ejercicio4;
 
 
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -23,6 +24,7 @@ public class CategoriaActivity extends AppCompatActivity {
     private ImageView imagenDos;
     private ImageView imagenTres;
     private ImageView imagenCuatro;
+    androidx.constraintlayout.widget.ConstraintLayout layoutMenu;
     static Integer[] images = {R.drawable.topo,R.drawable.pinball,R.drawable.pato,R.drawable.skeeball,
             R.drawable.martillo,R.drawable.punching_bag,R.drawable.soccer,R.drawable.vencidas,
             R.drawable.bowling,R.drawable.disquito_flotador,R.drawable.basquet,R.drawable.minigolf,
@@ -37,6 +39,7 @@ public class CategoriaActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.juegos);
+        layoutMenu = (androidx.constraintlayout.widget.ConstraintLayout) findViewById(R.id.layoutJuegos);
         imagenUno = (ImageView) findViewById(R.id.imageJuego1);
         imagenDos = (ImageView) findViewById(R.id.imageJuego2);
         imagenTres = (ImageView) findViewById(R.id.imageJuego3);
@@ -134,6 +137,34 @@ public class CategoriaActivity extends AppCompatActivity {
                 //Iniciamos la nueva actividad
                 startActivity(intent);
             }
+        });
+
+        layoutMenu.setOnTouchListener(new OnSwipeTouchListener(CategoriaActivity.this) {
+            public void onSwipeRight() {
+                //Creamos el Intent
+                Intent intent =
+                        new Intent(CategoriaActivity.this, CategoriaActivity.class);
+                Bundle b = new Bundle();
+                b.putInt("Opcion", Math.floorMod(bundle.getInt("Opcion"),4)+1);
+                //Añadimos la información al intent
+                intent.putExtras(b);
+                //Iniciamos la nueva actividad
+                startActivity(intent);
+            }
+            public void onSwipeLeft() {
+                //Creamos el Intent
+                Intent intent =
+                        new Intent(CategoriaActivity.this, CategoriaActivity.class);
+                Bundle b = new Bundle();
+                b.putInt("Opcion", Math.floorMod(bundle.getInt("Opcion")-2,4)+1);
+
+                    //Añadimos la información al intent
+                    intent.putExtras(b);
+                    //Iniciamos la nueva actividad
+                    startActivity(intent);
+                }
+
+
         });
     }
 }
